@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mayank Sharma</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* ================= THEME ================= */
+
+:root {
+  --bg: #f5f2ed;
+  --text: #1a1a1a;
+  --accent: #6b4f3a;
+  --border: rgba(0,0,0,0.1);
+}
+
+.dark {
+  --bg: #0b1112;
+  --text: #d6e2e3;
+  --accent: #1f8a8a;
+  --border: rgba(255,255,255,0.1);
+}
+
+/* ================= GLOBAL ================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: 0.3s;
+}
+
+section {
+  padding: 100px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+/* ================= NAV ================= */
+
+.nav {
+  position: fixed;
+  width: 100%;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  backdrop-filter: blur(10px);
+}
+
+.nav button {
+  background: none;
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+}
+
+.hero h1 {
+  font-size: 36px;
+  max-width: 400px;
+}
+
+/* INTERACTIVE CARD */
+.card {
+  width: 300px;
+  height: 200px;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.trail {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* ================= ABOUT ================= */
+
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.skills h3 {
+  margin-bottom: 10px;
+}
+
+.skills p span {
+  margin-right: 10px;
+  transition: 0.3s;
+}
+
+.skills p span:hover {
+  color: var(--accent);
+  text-shadow: 0 0 10px var(--accent);
+}
+
+/* ================= PROJECTS ================= */
+
+.project {
+  border-bottom: 1px solid var(--border);
+  padding: 20px 0;
+  transition: 0.3s;
+}
+
+.project:hover {
+  transform: translateX(5px);
+}
+
+/* ================= CONTACT ================= */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input, textarea {
+  padding: 10px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+}
+
+button {
+  padding: 10px;
+  border: none;
+  background: var(--accent);
+  color: white;
+  cursor: pointer;
+}
+
+/* ================= GLOBAL HOVER EFFECT ================= */
+
+.hoverable {
+  transition: 0.2s;
+}
+
+.hoverable:hover {
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<div class="nav">
+  <div>Mayank</div>
+  <button onclick="toggleTheme()">Theme</button>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>
+    I build calm, powerful web experiences.
+  </h1>
+
+  <div class="card" id="card"></div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+
+  <div class="skills">
+    <h3>Frontend</h3>
+    <p>
+      <span>HTML</span>
+      <span>CSS</span>
+      <span>JavaScript</span>
+    </p>
+  </div>
+
+  <div>
+    <p>
+      I'm a full stack developer focused on building real-world systems.
+      I’ve worked on complete applications including frontend, backend,
+      and database systems.
+    </p>
+  </div>
+
+</section>
+
+<!-- PROJECTS -->
+<section>
+  <h2>Projects</h2>
+
+  <div class="project">CreditA Finance – Full Stack Platform</div>
+  <div class="project">More coming soon...</div>
+
+</section>
+
+<!-- EASTER EGG -->
+<section>
+  <p onclick="alert('You found the hidden dev message 👀')">
+    (hover around… something might respond)
+  </p>
+</section>
+
+<!-- CONTACT -->
+<section>
+  <h2>Contact Me</h2>
+
+  <form>
+    <input placeholder="Your Name">
+    <input placeholder="Your Email">
+    <textarea placeholder="Message"></textarea>
+    <button>Send</button>
+  </form>
+
+</section>
+
+<script>
+
+/* THEME TOGGLE */
+function toggleTheme() {
+  document.body.classList.toggle("dark");
+}
+
+/* MOUSE TRAIL IN CARD */
+const card = document.getElementById("card");
+
+card.addEventListener("mousemove", (e) => {
+  const dot = document.createElement("div");
+  dot.classList.add("trail");
+
+  const rect = card.getBoundingClientRect();
+  dot.style.left = e.clientX - rect.left + "px";
+  dot.style.top = e.clientY - rect.top + "px";
+
+  card.appendChild(dot);
+
+  setTimeout(() => dot.remove(), 500);
+});
+
+</script>
+
+</body>
+</html>
